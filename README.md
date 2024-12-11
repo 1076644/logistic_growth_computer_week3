@@ -162,5 +162,5 @@ exponential_4980 <- exponential_function(t, N0, r)
 #Printing the result
 exponential_4980
 ```
-This gives us a value of 4.434717e+24 or **4,434,717,000,000,000,000,000,000** which is an immensly larger estimate to what we saw with logistical growth, with a fold difference of 7.39 x 10<sup>13</sup>.
+This gives us a value of 4.434717 x 10<sup>24</sup> or **4,434,717,000,000,000,000,000,000** which is an immensly larger estimate to what we saw with logistical growth, with a fold difference of 7.39 x 10<sup>13</sup>.
 
