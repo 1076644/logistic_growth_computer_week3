@@ -113,3 +113,36 @@ The graph produced from this shows the real data points in black compared to the
 
 ## Q2) Use your estimates of N0 and r to calculate the population size at t = 4980 min, assuming that the population grows exponentially. How does it compare to the population size predicted under logistic growth?
 
+There are many changes in the assumptions we make when performingn a logistical model comapred to a exponential model. For example, a logistical model assumes that at a certain time point, a carrying capacity is reached and that regardless of any future time from this point, the bacterial population cannot grow due to the factors such as the food availability and available space. This is shown graphically as a plateau. in exponential growth, this consideration is not made, and assumes the bacteria can grow infintely with infinite resource availability, which can commonly lead to unsutiably large estimates in populaiton sizes. 
+
+### Logistical Growth
+
+To see what the popualtion size is at t = 4980 mins for logisitcal growth, we can use the following code:
+
+``` {r}
+# Parameters 
+N0 <- exp(6.951506) # Initial population size
+r <- 0.01           # Growth rate
+t <- 4980           # Time in minutes
+K <- 6.00e+10       # Carrying capacity (only used for logistical growth)
+```
+Then we state our logistical equation and include our values above to otain an estimate for N.
+
+``` {r}
+logistic_function <- function(t) {
+  
+  N <- (N0*K*exp(r*t))/(K-N0+N0*exp(r*t))
+  
+  return(N)
+  
+}
+
+#Stating what we want to estimate from t which is 4980
+logistic_4980 <- logistic_function(t)
+
+#Printing the estimate
+logistic_4980
+```
+This unsurprisingly gives us a vlaue of **6.00e+10** which is our carrying capacity. This can also be deduced using the first graph we plottede above showing the data.
+
+### Exponential Growth
