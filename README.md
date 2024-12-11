@@ -43,7 +43,6 @@ data_subset1 <- growth_data %>% filter(t<1750) %>% mutate(N_log = log(N))
 
 model1 <- lm(N_log ~ t, data_subset1)
 summary(model1)
-
 ```
 This code above performs a logistical function of our early time points, shown through the *filter(t<1750)*. This is where we expect to observe the bacteria to show logistical growth. From this code, we obtain estimates for both our N0 and our r value. Our N0 is the intial popualtion size and our r value is our growth rate. According to our linear model, the values for N0 are **exp(6.95)** as this is log transfromed data and 0.0099 which can be rounded to **0.01**. To obtaion an estimate for out carrying capacity K, we can perform a logistical analysis without log transforming our data. This is because as t tends towards infintiy, it becomes equal to K. The code to perform this is shown below:
 
@@ -101,4 +100,16 @@ logistic_function <- function(t) {
 }
 
 # Plotting the model agaiant our actual data
+
+ggplot(aes(t,N), data = growth_data) +
+  
+  geom_function(fun=logistic_fun, colour="red") +
+  
+  geom_point()
+```
+The graph produced from this shows the real data points in black compared to the model which is shown through the red line. As we can see, this model fits very well against our data points and is very effective in estimating our key parameters for modellling bacterial growth, specifically in E.coli.
+
+![image](https://github.com/user-attachments/assets/2a7a53a8-b867-4e9b-8fef-60ea581b212f)
+
+## Q2) Use your estimates of N0 and r to calculate the population size at t = 4980 min, assuming that the population grows exponentially. How does it compare to the population size predicted under logistic growth?
 
