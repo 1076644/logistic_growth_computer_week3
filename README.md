@@ -54,7 +54,7 @@ data_subset2 <- growth_data %>% filter(t>2500)
 model2 <- lm(N ~ 1, data_subset2)
 summary(model2)
 ```
-The output from this gives us a value of **6.00e+10**. It is key that our p values for all of these estimates are at the 0.001 level. we can check the appropiateness of this analysis by doing a residuals plot fopr both of these subsest of the data. This can be done from the code below:
+The output from this gives us a value of **6.00 x 10<sup>10</sup>**. It is key that our p values for all of these estimates are at the 0.001 level. we can check the appropiateness of this analysis by doing a residuals plot fopr both of these subsest of the data. This can be done from the code below:
 
 ``` {r}
 residuals_plot <- ggplot(data_subset1, aes(x = t, y = residuals(model1))) +
@@ -113,7 +113,7 @@ The graph produced from this shows the real data points in black compared to the
 
 ## Q2) Use your estimates of N0 and r to calculate the population size at t = 4980 min, assuming that the population grows exponentially. How does it compare to the population size predicted under logistic growth?
 
-There are many changes in the assumptions we make when performingn a logistical model comapred to a exponential model. For example, a logistical model assumes that at a certain time point, a carrying capacity is reached and that regardless of any future time from this point, the bacterial population cannot grow due to the factors such as the food availability and available space. This is shown graphically as a plateau. in exponential growth, this consideration is not made, and assumes the bacteria can grow infintely with infinite resource availability, which can commonly lead to unsutiably large estimates in populaiton sizes. 
+There are many changes in the assumptions we make when performingn a logistical model comapred to a exponential model. For example, a logistical model assumes that at a certain time point, a carrying capacity is reached and that regardless of any future time from this point, the bacterial population cannot grow due to the factors such as the food availability and available space. This is shown graphically as a plateau. In exponential growth, this consideration is not made, and assumes the bacteria can grow infintely with infinite resource availability, which can commonly lead to unsuitably large estimates in population sizes. 
 
 ### Logistical Growth
 
@@ -143,6 +143,24 @@ logistic_4980 <- logistic_function(t)
 #Printing the estimate
 logistic_4980
 ```
-This unsurprisingly gives us a vlaue of **6.00e+10** which is our carrying capacity. This can also be deduced using the first graph we plottede above showing the data.
+This unsurprisingly gives us a vlaue of **6.00 x 10<sup>10</sup>** which is our carrying capacity. This can also be deduced using the first graph we plottede above showing the data.
 
 ### Exponential Growth
+
+To see our estimate for exponential growth, a similar code is used which is shown below, with the same parameters used as show above:
+
+``` {r}
+# Exponential growth function
+exponential_function <- function(t, N0, r) {
+  N <- N0 * exp(r * t)
+  return(N)
+}
+
+# Obtaining our estimate
+exponential_4980 <- exponential_function(t, N0, r)
+
+#Printing the result
+exponential_4980
+```
+This gives us a value of 4.434717e+24 or **4,434,717,000,000,000,000,000,000** which is an immensly larger estimate to what we saw with logistical growth, with a fold difference of 7.39 x 10<sup>13</sup>.
+
