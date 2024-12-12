@@ -105,7 +105,7 @@ logistic_function <- function(t) {
   
 }
 
-# Plotting the model agaiant our actual data
+# Plotting the model against our actual data
 
 ggplot(aes(t,N), data = growth_data) +
   
