@@ -47,7 +47,7 @@ model1 <- lm(N_log ~ t, data_subset1)
 summary(model1)
 ```
 This code above performs a logistical function of our early time points, shown through the *filter(t<1750)*. This is where we expect to observe the bacteria to show logistical growth. From this code, we obtain estimates for both our N0 and our r value. Our N0 is the intial popualtion size and our r value is our growth rate. According to our linear model, the values for N0 and r are as follows:
-- N0 -> **exp(6.95)** as this is log transfromed data whihc is approximately **1041**
+- N0 -> **exp(6.95)** as this is log transfromed data which is approximately **1041**
 - r -> 0.0099 which can be rounded to **0.01**
 
 To obtain an estimate for our carrying capacity K, we can perform a logistical analysis without log transforming our data. This is because as t tends towards infintiy, it becomes equal to K. The code to perform this is shown below:
@@ -62,7 +62,7 @@ summary(model2)
 ```
 - The output from this gives us a value of **6.00 x 10<sup>10</sup>** for K.
 
-It is key that our p values for all of these estimates are at the 0.001 level. We can check the appropriateness of this analysis by doing a residuals plot for both of these subsets of the data. This can be done from the code below:
+It is key that our p values for all of these estimates are at the 0.001 level, which is highly significant. We can check the appropriateness of this analysis by doing a residuals plot for both of these subsets of the data. This can be done from the code below:
 
 ``` r
 residuals_plot <- ggplot(data_subset1, aes(x = t, y = residuals(model1))) +
@@ -145,10 +145,10 @@ logistic_function <- function(t) {
   
 }
 
-#Stating what we want to estimate from t which is 4980
+# Stating what we want to estimate from t which is 4980
 logistic_4980 <- logistic_function(t)
 
-#Printing the estimate
+# Printing the estimate
 logistic_4980
 ```
 This unsurprisingly gives us a value of **6.00 x 10<sup>10</sup>** which is our carrying capacity. This can also be deduced using the first graph we plotted above showing the data.
