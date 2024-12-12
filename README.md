@@ -12,7 +12,7 @@ This represents the rate of change we may see in population growth of E.coli whi
 
 The first section of the analysis is splitting the growth of the bacteria into its distinct stages. In a logisitical model, we see a *lag phase*, *exponential phase* and then a *stationary phase* specifically for this data set. We may also see a *death phase* where population numbers reduce in other models. We can visualise the growth using the following code:
 
-``` {r}
+``` r
 growth_data <- read.csv("experiment.csv")
 
 install.packages("ggplot2")
@@ -36,7 +36,7 @@ From this we can see the clear stages in growth in E.coli. At early points, we s
 
 To perform a logistical growth test agaisnt our data, we can use the following code below:
 
-``` {r}
+``` r
 #Case 1; K >> N0, t is small (Early Growth)
 
 data_subset1 <- growth_data %>% filter(t<1750) %>% mutate(N_log = log(N))
@@ -50,7 +50,7 @@ This code above performs a logistical function of our early time points, shown t
 
 To obtain an estimate for our carrying capacity K, we can perform a logistical analysis without log transforming our data. This is because as t tends towards infintiy, it becomes equal to K. The code to perform this is shown below:
 
-``` {r}
+``` r
 #Case 2: N(t) = K (Stabilising Growth)
 
 data_subset2 <- growth_data %>% filter(t>2500)
@@ -62,7 +62,7 @@ summary(model2)
 
 It is key that our p values for all of these estimates are at the 0.001 level. We can check the appropriateness of this analysis by doing a residuals plot for both of these subsets of the data. This can be done from the code below:
 
-``` {r}
+``` r
 residuals_plot <- ggplot(data_subset1, aes(x = t, y = residuals(model1))) +
   geom_point() +
   geom_hline(yintercept = 0, color = "red", linetype = "dashed") +
@@ -74,7 +74,7 @@ This produces a plot for when t is small which looks as follows:
 
 ![image](https://github.com/user-attachments/assets/11451491-586d-46db-a5e4-3053f11aba03)
 
-``` {r}
+``` r
 residuals_plot2 <- ggplot(data_subset2, aes(x = t, y = residuals(model2))) +
   geom_point() +
   geom_hline(yintercept = 0, color = "red", linetype = "dashed") +
@@ -90,7 +90,7 @@ We can see in both these plots that the residuals are relatively close and consi
 
 Now that we have these estimates, we can plot them against our graph to see how accurate they are. This can be performed using the code below:
 
-``` {r}
+``` r
 N0 <- exp(6.951506) # This is our initial population size of E.coli
 
 r <- 0.01 # t approximation using a linear model 0.009902 rounded to 0.01 
@@ -125,7 +125,7 @@ There are many changes in the assumptions we make when performing a logistical m
 
 To see what the population size is at t = 4980 mins for logisitcal growth, we can use the following code:
 
-``` {r}
+``` r
 # Parameters 
 N0 <- exp(6.951506) # Initial population size
 r <- 0.01           # Growth rate
@@ -134,7 +134,7 @@ K <- 6.00e+10       # Carrying capacity (only used for logistical growth)
 ```
 Then we state our logistical equation and include our values above to obtain an estimate for N.
 
-``` {r}
+``` r
 logistic_function <- function(t) {
   
   N <- (N0*K*exp(r*t))/(K-N0+N0*exp(r*t))
@@ -155,7 +155,7 @@ This unsurprisingly gives us a value of **6.00 x 10<sup>10</sup>** which is our 
 
 To see our estimate for exponential growth, a similar code is used which is shown below, with the same parameters used as shown above:
 
-``` {r}
+``` r
 # Exponential growth function
 exponential_function <- function(t, N0, r) {
   N <- N0 * exp(r * t)
@@ -178,7 +178,7 @@ To take the estimates on logistical growth and exponential growth further, we ca
 
 The code to perfrom this is shown below:
 
-``` {r}
+``` r
 growth_data <- growth_data %>%
   mutate(
     Exp_Prediction = exponential_growth(t, N0, r),  # Exponential growth
@@ -187,7 +187,7 @@ growth_data <- growth_data %>%
 ```
 This line of code produces a prediction for our values for both a logistical model and a exponential model based on the parameters estimated above in our earlier analysis for N0, r and K, which is only used for the logsitical model agaisnt time. We can then take this further by using the ggplot function to visualise the data predictions from these estimated parameters. 
 
-``` {r}
+``` r
 ggplot(growth_data) +
   # Plot Exponential growth
   geom_line(aes(x = t, y = Exp_Prediction, color = "Exponential Growth", linetype = "Exponential Growth"), 
