@@ -34,7 +34,7 @@ This produces a graph looking like this:
 
 From this we can see the clear stages in growth in E.coli. At early points, we see an almost exponentail growth which then plateaus off. Performing a semi-log plot of the same adaty shows that these early stages can be shown as an increasing linear relationship, which we can then test to obtain estimates for our key values. This produces a graph shown below:
 
-![image](https://github.com/user-attachments/assets/b0765fd5-3713-43c9-bc70-2ce75820fc49)
+![image](https://github.com/user-attachments/assets/19d578db-b7bb-46a9-b880-07f4c32bdc12)
 
 To perform a logistical growth test agaisnt our data, we can use the following code below:
 
