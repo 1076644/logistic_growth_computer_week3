@@ -10,7 +10,7 @@ The data from the file 'experiments.csv' shows data obtained from test tube meas
 
 This represents the rate of change we may see in population growth of E.coli which is then eventually scaled when the population reaches a certain number in the population known as the carrying capacity (K). 
 
-The first section of the analysis is splitting the growth of the bacteria into its distinct stages. In a logisitical model, we see a *lag phase*, *exponential phase* and then a *stationary phase* specifically for this data set. We may also see a *death phase* where population numbers reduce in other models. We can visualise the growth using the following code:
+The first section of the analysis is splitting the growth of the bacteria into its distinct stages. In a logisitical model, we see a *lag phase*, *exponential phase* and then a *stationary phase* specifically for this data set. We may also see a *death phase* where population numbers reduce if exceeding the carrying capacity. We can visualise the growth using the following code:
 
 ``` r
 growth_data <- read.csv("experiment.csv")
