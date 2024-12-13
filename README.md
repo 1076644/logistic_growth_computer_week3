@@ -8,7 +8,7 @@ The data from the file 'experiments.csv' shows data obtained from test tube meas
 \end{equation}
 ```
 
-This represents the rate of change we may see in population growth of E.coli which is then eventually scaled when the population reaches a certain number in the population known as the carrying capacity (K). 
+This represents the rate of change we may see in population growth of E.coli which is then eventually scaled when the population reaches a certain number known as the carrying capacity (K). 
 
 The first section of the analysis is splitting the growth of the bacteria into its distinct stages. In a logisitical model, we see a *lag phase*, *exponential phase* and then a *stationary phase* specifically for this data set. We may also see a *death phase* where population numbers reduce if exceeding the carrying capacity. We can visualise the growth using the following code:
 
@@ -32,7 +32,7 @@ This produces a graph looking like this:
 
 ![image](https://github.com/user-attachments/assets/bcadf56a-e9e1-49e6-8a4a-981fe5098879)
 
-From this we can see the clear stages in growth in E.coli. At early points, we see an almost exponentail growth which then plateaus off. Performing a semi-log plot of the same adaty shows that these early stages can be shown as an increasing linear relationship, which we can then test to obtain estimates for our key values. This produces a graph shown below:
+From this we can see the clear stages in growth in E.coli. At early points, we see an almost exponential growth which then plateaus off. Performing a semi-log plot of the same data shows that these early stages can be shown as an increasing linear relationship, which we can then test to obtain estimates for our key values. This produces a graph shown below:
 
 ![image](https://github.com/user-attachments/assets/19d578db-b7bb-46a9-b880-07f4c32bdc12)
 
@@ -62,7 +62,7 @@ summary(model2)
 ```
 - The output from this gives us a value of **6.00 x 10<sup>10</sup>** for K.
 
-It is key that our p values for all of these estimates are at the 0.001 level, which is highly significant. We can check the appropriateness of this analysis by doing a residuals plot for both of these subsets of the data. This can be done from the code below:
+It is key that our p values for all of these estimates are well below the 0.001 level, which is highly significant. We can check the appropriateness of this analysis by doing a residuals plot for both of these subsets of the data. This can be done from the code below:
 
 ``` r
 residuals_plot <- ggplot(data_subset1, aes(x = t, y = residuals(model1))) +
@@ -178,7 +178,7 @@ This gives us a value of 4.434717 x 10<sup>24</sup> or **4,434,717,000,000,000,0
 
 To take the estimates on logistical growth and exponential growth further, we can plot them on the same graph and see the differences in population sizes at both low values of t and high values of t. This allows us to visualise the scaling achieved when a carrying capacity is included in the model. 
 
-The code to perfrom this is shown below:
+The code to perform this is shown below:
 
 ``` r
 growth_data <- growth_data %>%
